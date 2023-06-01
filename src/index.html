@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise tracker</title>
+    <link rel="stylesheet" href="/src/index.css">
+</head>
+
+<body>
+    <header>
+        <h1>Exercise Tracker</h1>
+    </header>
+    <main>
+        <form action="api/users" method="post">
+            <fieldset>
+                <legend>New User</legend>
+                <input type="text" placeholder="username" name="username" id="uname" required><br>
+                <input type="submit" value="Register">
+            </fieldset>
+            <p>
+                POST /api/users
+            </p>
+        </form>
+        <form action="/api/users" method="get">
+            <fieldset>
+                <legend>Fetch users</legend>
+                <input type="submit">
+            </fieldset>
+            <p>
+                GET /api/users
+            </p>
+        </form>
+        <form id="exercise-form" method="post">
+            <fieldset>
+                <legend>Add exercise</legend>
+                <input type="text" placeholder=":_id" id="uid" name="uid" required><br>
+                <input type="text" placeholder="description" name="description" id="desc" required><br>
+                <input type="number" placeholder="duration (mins)" name="duration" id="dur" required><br>
+                <input type="text" placeholder="date (yyyy-mm-dd)" name="date" id="date"><br>
+                <input type="submit" value="Submit">
+            </fieldset>
+            <p>
+                POST /api/users/:_id/exercises
+            </p>
+        </form>
+        <form method="get" id="log-form">
+            <fieldset>
+                <legend>Fetch logs</legend>
+                <input type="text" placeholder=":_id" name=":_id" id="userid" required><br>
+                <input type="text" placeholder="start date (yyyy-mm-dd)" name="from" id="sdate"><br>
+                <input type="text" placeholder="end date (yyyy-mm-dd)" name="to" id="edate"><br>
+                <input type="br" placeholder="limit" id="limit" name="limit"><br>
+                <input type="submit">
+            </fieldset>
+            <p>
+                GET /api/users/:_id/logs?from=&to=&limit
+            </p>
+        </form>
+    </main>
+    <footer>
+        By Siddharth Saraf <br>
+        <a
+            href="https://www.freecodecamp.org/learn/back-end-development-and-apis/back-end-development-and-apis-projects/exercise-tracker">Project
+            for FCC</a>
+    </footer>
+
+    <script>
+
+        var exForm = document.forms['exercise-form']
+        var logForm = document.forms['log-form']
+
+        exForm.addEventListener('submit', () => {
+            const uid = exForm.uid.value
+            exForm.action = `/api/users/${uid}/exercises`;
+        })
+
+        logForm.addEventListener('submit', () => {
+            const uid = logForm.userid.value
+            logForm.action = `/api/users/${uid}/logs`;
+
+        })
+    </script>
+</body>
+
+</html>

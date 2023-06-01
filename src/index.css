@@ -1,0 +1,28 @@
+header>h1 {
+    text-align: center;
+}
+
+
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+main {
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+input {
+    margin-top: 10px;
+}
+
+input[required] {
+    border: 1px solid red;
+}
+
+footer {
+    padding: 100px;
+}
